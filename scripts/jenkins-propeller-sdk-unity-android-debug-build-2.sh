@@ -26,8 +26,13 @@ if ! ant debug ; then
     exit 1
 fi
 
-# renaming output .jar
-cd bin
-if ! mv classes.jar PropellerSDKUnityPlugin.jar ; then
+# create output folder
+cd ..
+rm -rf build
+mkdir build
+
+# copying generated artifacts to the output folder
+cd build
+if ! cp ../$REPOSITORY/bin/classes.jar PropellerSDKUnityPlugin.jar ; then
     exit 1
 fi
