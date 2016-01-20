@@ -12,29 +12,30 @@ if [[ `pwd` != "$REPOSITORY_PATH/scripts" ]]; then
     exit 1
 fi
 
-REPOSITORY=`basename $REPOSITORY_PATH`
-
+ROOT_PATH=`dirname $REPOSITORY_PATH`
+PROJECT_PATH=$REPOSITORY_PATH
+FUEL_SDK_PATH="$ROOT_PATH/fuel-sdk"
+OUTPUT_PATH="$ROOT_PATH/build"
 OUTPUT_FILENAME=PropellerSDKUnityPlugin.jar
 
 # setting the local.properties file
-cd ../../fuel-sdk/config
+cd $FUEL_SDK_PATH/config
 if ! cp local.properties.example local.properties ; then
     exit 1
 fi
 
 # running ant task
-cd ../../$REPOSITORY
+cd $PROJECT_PATH
 if ! ant debug ; then
     exit 1
 fi
 
 # create output folder
-cd ..
-rm -rf build
-mkdir build
+rm -rf $OUTPUT_PATH
+mkdir -p $OUTPUT_PATH
 
 # copying generated artifacts to the output folder
-cd build
-if ! cp ../$REPOSITORY/bin/classes.jar $OUTPUT_FILENAME ; then
+cd $OUTPUT_PATH
+if ! cp $PROJECT_PATH/bin/classes.jar $OUTPUT_FILENAME ; then
     exit 1
 fi

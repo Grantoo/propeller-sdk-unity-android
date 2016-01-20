@@ -12,20 +12,20 @@ if [[ `pwd` != "$REPOSITORY_PATH/scripts" ]]; then
     exit 1
 fi
 
-REPOSITORY=`basename $REPOSITORY_PATH`
-
 # arg 1 - fuel-sdk git repository branch to use
 
+ROOT_PATH=`dirname $REPOSITORY_PATH`
+PROJECT_PATH=$REPOSITORY_PATH
+FUEL_SDK_PATH="$ROOT_PATH/fuel-sdk"
 FUEL_SDK_BRANCH=$1
 
 # cloning the fuel-sdk repository
-cd ../..
-rm -rf fuel-sdk
-if ! git clone -b $FUEL_SDK_BRANCH git@github.com:Grantoo/fuel-sdk.git ; then
+rm -rf $FUEL_SDK_PATH
+if ! git clone -b $FUEL_SDK_BRANCH git@github.com:Grantoo/fuel-sdk.git $FUEL_SDK_PATH ; then
     exit 1
 fi
 
 # removing existing files to be replaced by build artifacts to prevent issues
-cd $REPOSITORY/libs
+cd $PROJECT_PATH/libs
 rm -f PropellerSDK_Android.jar
 rm -f PropellerSDK_Android_GCM.jar
