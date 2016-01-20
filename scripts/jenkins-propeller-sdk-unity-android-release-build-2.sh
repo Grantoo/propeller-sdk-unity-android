@@ -14,6 +14,8 @@ fi
 
 REPOSITORY=`basename $REPOSITORY_PATH`
 
+OUTPUT_FILENAME=PropellerSDKUnityPlugin.jar
+
 # setting the local.properties file
 cd ../../fuel-sdk/config
 if ! cp local.properties.example local.properties ; then
@@ -33,6 +35,6 @@ mkdir build
 
 # copying generated artifacts to the output folder
 cd build
-if ! cp ../$REPOSITORY/bin/classes.jar PropellerSDKUnityPlugin.jar ; then
+if ! cp ../$REPOSITORY/bin/classes.jar $OUTPUT_FILENAME ; then
     exit 1
 fi
