@@ -16,6 +16,10 @@ ROOT_PATH=`dirname $REPOSITORY_PATH`
 FUEL_SDK_PATH="$ROOT_PATH/fuel-sdk"
 OUTPUT_PATH="$ROOT_PATH/build"
 
+# create output folder
+rm -rf $OUTPUT_PATH
+mkdir -p $OUTPUT_PATH
+
 # ---------------------------------------------------------------------------------------------------- #
 # NOTE:  Do not modify the script above unless you know what you are doing. It's a standard script for #
 #        initializing and validating the build filesystem and environment variables common to all      #
@@ -36,10 +40,6 @@ cd $PROJECT_PATH
 if ! ant release ; then
     exit 1
 fi
-
-# create output folder
-rm -rf $OUTPUT_PATH
-mkdir -p $OUTPUT_PATH
 
 # copying generated artifacts to the output folder
 cd $OUTPUT_PATH
