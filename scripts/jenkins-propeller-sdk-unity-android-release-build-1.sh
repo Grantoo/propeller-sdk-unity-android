@@ -34,7 +34,7 @@ if [ $CLONE_FUEL_SDK == 1 ] ; then
     # cloning the fuel-sdk repository
     rm -rf $FUEL_SDK_PATH
 
-    if ! git clone -b $FUEL_SDK_BRANCH git@github.com:Grantoo/fuel-sdk.git $FUEL_SDK_PATH ; then
+    if ! git clone -b $FUEL_SDK_BRANCH --recursive git@github.com:Grantoo/fuel-sdk.git $FUEL_SDK_PATH ; then
         exit 1
     fi
 else
@@ -54,6 +54,10 @@ else
     fi
 
     if ! git checkout $FUEL_SDK_BRANCH ; then
+        exit 1
+    fi
+
+    if ! git submodule update --init ; then
         exit 1
     fi
 
