@@ -12,10 +12,11 @@ if [[ `pwd` != "$REPOSITORY_PATH/scripts" ]]; then
     exit 1
 fi
 
+# arg 1 - fuel-sdk git repository branch to use
+
 ROOT_PATH=`dirname $REPOSITORY_PATH`
-PROJECT_PATH=$REPOSITORY_PATH
 FUEL_SDK_PATH="$ROOT_PATH/fuel-sdk"
-FUEL_SDK_BRANCH=master
+FUEL_SDK_BRANCH=$1
 
 CLONE_FUEL_SDK=1
 
@@ -58,6 +59,14 @@ else
 
     cd - > /dev/null
 fi
+
+# ---------------------------------------------------------------------------------------------------- #
+# NOTE:  Do not modify the script above unless you know what you are doing. It's a standard script for #
+#        initializing and validating the build filesystem and environment variables common to all      #
+#        client SDK related Jenkins jobs.                                                              #
+# ---------------------------------------------------------------------------------------------------- #
+
+PROJECT_PATH=$REPOSITORY_PATH
 
 # removing existing files to be replaced by build artifacts to prevent issues
 cd $PROJECT_PATH/libs

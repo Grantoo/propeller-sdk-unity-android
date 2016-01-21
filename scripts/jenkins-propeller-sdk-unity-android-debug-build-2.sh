@@ -13,9 +13,16 @@ if [[ `pwd` != "$REPOSITORY_PATH/scripts" ]]; then
 fi
 
 ROOT_PATH=`dirname $REPOSITORY_PATH`
-PROJECT_PATH=$REPOSITORY_PATH
 FUEL_SDK_PATH="$ROOT_PATH/fuel-sdk"
 OUTPUT_PATH="$ROOT_PATH/build"
+
+# ---------------------------------------------------------------------------------------------------- #
+# NOTE:  Do not modify the script above unless you know what you are doing. It's a standard script for #
+#        initializing and validating the build filesystem and environment variables common to all      #
+#        client SDK related Jenkins jobs.                                                              #
+# ---------------------------------------------------------------------------------------------------- #
+
+PROJECT_PATH=$REPOSITORY_PATH
 OUTPUT_FILENAME=PropellerSDKUnityPlugin.jar
 
 # setting the local.properties file
