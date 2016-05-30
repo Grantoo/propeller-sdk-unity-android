@@ -41,15 +41,15 @@ else
     # resetting the fuel-sdk repository
     cd $FUEL_SDK_PATH
 
-    if ! git reset HEAD --hard ; then
+    if ! git fetch origin ; then
+        exit 1
+    fi
+
+    if ! git reset --hard origin/$FUEL_SDK_BRANCH ; then
         exit 1
     fi
 
     if ! git clean -dfx ; then
-        exit 1
-    fi
-
-    if ! git pull ; then
         exit 1
     fi
 
